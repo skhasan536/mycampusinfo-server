@@ -1,7 +1,11 @@
 import mongoose from "mongoose";
 
 const CollegeSchema = new mongoose.Schema({
-    
+    authId: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'auths',
+        required: true
+    },
     name: { type: String, required: true },
     city: { type: String, required: true },
     state: { type: String, required: true },
