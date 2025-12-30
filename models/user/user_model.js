@@ -1,0 +1,69 @@
+import mongoose from "mongoose";
+
+const StudentSchema = new mongoose.Schema(
+    {
+        authId: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "auths", 
+            required: true
+        },
+
+        email: {
+            type: String,
+            required: true
+        },
+        contactNo: {
+            type: String,
+            required: true
+        },
+        dateOfBirth: {
+            type: String,
+            required: true
+        },
+        name: {
+            type: String,
+            required: true
+        },
+        gender: {
+            type: String,
+            enum: ['male', 'female', 'other'],
+            required: true
+        },
+        state: {
+            type: String,
+            required: true
+        },
+        city: {
+            type: String,
+            required: true
+        },
+        area : {
+            type:String,
+            required:false
+        },
+          latitude: {
+    type: Number,
+ required : false
+  },
+  longitude: {
+    type: Number,
+   required:false
+  },
+        userType: {
+            type: String,
+            enum: ['student','parent'], // Since this is only for students
+            required: true
+        },
+      shortlistedSchools: {
+      type: [mongoose.Schema.Types.ObjectId],
+      ref: "college",
+      default: []  
+    }
+    },
+    {
+        timestamps: true
+    }
+);
+
+const Student = mongoose.model("college", StudentSchema);
+export default Student;
