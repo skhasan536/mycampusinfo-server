@@ -1,8 +1,12 @@
 import express from 'express';
 import dotenv from "dotenv";
 import cors from "cors";
+import connectDB from "./config/db.js";
+
+import { getEntryPage } from './src/utils/entryPage.js';
 
 dotenv.config();
+connectDB();
 
 const app = express();
 
