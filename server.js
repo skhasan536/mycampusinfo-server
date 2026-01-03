@@ -3,7 +3,7 @@ import dotenv from "dotenv";
 import cors from "cors";
 import connectDB from "./config/db.js";
 
-import { getEntryPage } from './src/utils/entryPage.js';
+import { getEntryPage } from './src/utils/entry-point.js';
 
 dotenv.config();
 connectDB();
