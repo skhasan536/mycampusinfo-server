@@ -1,5 +1,5 @@
 import jwt from 'jsonwebtoken';
-import Auth from '../models/auth-model.js';
+import Auth from '../models/auth/auth_model.js';
 import { googleClient } from '../utils/google-client.js';
 
 export const handleGoogleAuthService = async (tokenId, userType, isWeb) => {

@@ -1,4 +1,4 @@
-import FeesAndScholarships from "../models/school_details/fees_and_scholarship_model.js";
+import FeesAndScholarships from "../models/school_details/fee_and_scholarship_model.js";
 
 export const createFeesAndScholarshipsService = async (data) => {
   return await FeesAndScholarships.create(data);

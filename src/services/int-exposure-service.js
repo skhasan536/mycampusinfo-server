@@ -1,4 +1,4 @@
-import InternationalExposure from "../models/school_details/international_exposure.model.js";
+import InternationalExposure from "../models/school_details/international_exposure.js";
 
 export const createInternationalExposureService = async (data) => {
   return await InternationalExposure.create(data);

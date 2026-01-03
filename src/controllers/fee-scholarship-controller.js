@@ -3,7 +3,7 @@ import {
     getFeesAndScholarshipsByCollegeIdService,
     updateFeesAndScholarshipsByCollegeIdService,
     deleteFeesAndScholarshipsByCollegeIdService,
-} from "../services/fee-scholarship-service"
+} from "../services/fee-scholarship-service.js"
 
 export const addFeesAndScholarships = async (req, res) => {
     try {
