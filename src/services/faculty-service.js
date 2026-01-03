@@ -1,4 +1,4 @@
-import Faculty from "../models/faculty_model.js";
+import Faculty from "../models/school_details/faculty_model.js";
 
 export const createFacultyService = async (data) => {
   return await Faculty.create(data);

@@ -1,4 +1,4 @@
-import OtherDetails from "../models/diversity_model.js";
+import OtherDetails from "../models/school_details/diversity_model.js";
 
 export const createOtherDetailsService = async (data) => {
   return await OtherDetails.create(data);

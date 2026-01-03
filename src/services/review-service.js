@@ -1,4 +1,4 @@
-import Review from "../models/review_model.js";
+import Review from "../models/school_details/review_model.js";
 
 export const createReviewService = async (data) => {
   return await Review.create(data);

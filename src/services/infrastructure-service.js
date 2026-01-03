@@ -1,4 +1,4 @@
-import Infrastructure from "../models/infrastructure_model.js";
+import Infrastructure from "../models/school_details/infrastructure_model.js";
 
 export const createInfrastructureService = async (data) => {
   return await Infrastructure.create(data);
