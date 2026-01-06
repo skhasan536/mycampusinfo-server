@@ -2,6 +2,7 @@ import express from 'express';
 import dotenv from "dotenv";
 import cors from "cors";
 import connectDB from "./config/db.js";
+import apiRouter from './src/routes/api-router.js';
 
 import { getEntryPage } from './src/utils/entry-point.js';
 import collegeRoutes from "./src/routes/college-routes.js";
@@ -20,6 +21,8 @@ app.use(cors());
 app.get('/', (req, res) => {
     res.send(getEntryPage());
 });
+
+app.use('/api', apiRouter);
 
 
 app.use("/api/colleges", collegeRoutes);
