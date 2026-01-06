@@ -4,8 +4,8 @@ import { authRoutes, collegeRoutes, userRoutes, applicationRoutes } from './api-
 const router = express.Router();
 
 router.use("/auth", authRoutes);
-app.use("/colleges", collegeRoutes);
-app.use("/users", userRoutes);
-app.use("/application", applicationRoutes);
+router.use("/colleges", collegeRoutes);
+router.use("/users", userRoutes);
+router.use("/application", applicationRoutes);
 
 export default router;
