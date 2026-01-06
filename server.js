@@ -4,7 +4,10 @@ import cors from "cors";
 import connectDB from "./config/db.js";
 
 import { getEntryPage } from './src/utils/entry-point.js';
-
+import collegeRoutes from "./src/routes/college-routes.js";
+import userRoutes from "./src/routes/user-routes.js";
+import authRoutes from "./src/routes/auth-routes.js";
+import applicationRoutes from "./src/routes/application-routes.js";
 dotenv.config();
 connectDB();
 
@@ -18,6 +21,11 @@ app.get('/', (req, res) => {
     res.send(getEntryPage());
 });
 
+
+app.use("/api/colleges", collegeRoutes);
+app.use("/api/users", userRoutes);
+app.use("/api/auth", authRoutes);
+app.use("/api/application", applicationRoutes);
 const PORT = process.env.PORT || 8080;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
 

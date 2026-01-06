@@ -1,10 +1,10 @@
 import jwt from 'jsonwebtoken';
-import Auth from '../models/auth-model.js';
-import OTP from '../models/otp-model.js';
+import Auth from '../models/auth/auth_model.js';
+import OTP from '../models/auth/otp-model.js';
 import { sendVerificationEmail, sendOtpToEmail } from '../utils/email.js';
 import mongoose from 'mongoose';
-import { createNotificationService } from './notification-services.js';
-import { pushNotification } from '../utils/send-notification.js';
+// import { createNotificationService } from './notification-services.js';
+// import { pushNotification } from '../utils/send-notification.js';
 
 export const getAuth = async ({authId}) => {
   const auth = await Auth.findById(new mongoose.Types.ObjectId(authId));
@@ -63,8 +63,8 @@ export const loginUserService = async ({ email, password, deviceToken }) => {
   await auth.save();
 
   ///TODO: Remove this from server once going to production
-  const notification = await createNotificationService({title: 'Logged In', body: 'You have successfully logged in', authId: auth._id, notificationType: 'Others'});
-  return { auth, token };
+  // const notification = await createNotificationService({title: 'Logged In', body: 'You have successfully logged in', authId: auth._id, notificationType: 'Others'});
+  // return { auth, token };
 };
 
 export const verifyEmailService = async (token) => {

@@ -1,4 +1,4 @@
-import SafetyAndSecurity from "../models/security_model.js";
+import SafetyAndSecurity from "../models/school_details/security_model.js";
 
 export const createSafetyAndSecurityService = async (data) => {
   return await SafetyAndSecurity.create(data);

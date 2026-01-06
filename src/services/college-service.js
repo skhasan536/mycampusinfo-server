@@ -1,4 +1,4 @@
-import College from "../models/college_model.js";
+import College from "../models/school_details/college_model.js";
 
 /* ADD COLLEGE */
 export const createCollegeService = async (data) => {

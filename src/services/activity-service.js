@@ -1,4 +1,4 @@
-import Activities from "../models/activity_model.js";
+import Activities from "../models/school_details/activity_model.js";
 
 /* ADD */
 export const createActivitiesService = async (data) => {

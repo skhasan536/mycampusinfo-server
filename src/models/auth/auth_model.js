@@ -24,7 +24,7 @@ const AuthSchema = new mongoose.Schema(
         userType: {
             type: String,
             required: true,
-            enum: ['student', 'parent', 'school'],
+            enum: ['student', 'parent', 'college'],
         },
         authProvider: {
             type: String,

@@ -1,4 +1,4 @@
-import Hostel from "../models/hostel_model.js";
+import Hostel from "../models/school_details/hostel_model.js";
 
 export const createHostelService = async (data) => {
   return await Hostel.create(data);

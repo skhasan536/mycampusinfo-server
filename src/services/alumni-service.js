@@ -1,4 +1,4 @@
-import Alumni from "../models/alumni_model.js";
+import Alumni from "../models/school_details/alumni_model.js";
 
 /* ADD */
 export const createAlumniService = async (data) => {

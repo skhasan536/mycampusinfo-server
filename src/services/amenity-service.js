@@ -1,4 +1,4 @@
-import Amenities from "../models/amenities_model.js";
+import Amenities from "../models/school_details/amenities_model.js";
 
 export const createAmenitiesService = async (data) => {
   return await Amenities.create(data);
