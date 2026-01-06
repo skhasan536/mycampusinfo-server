@@ -1,7 +1,7 @@
 import express from "express";
-import { loginUser, registerUser, resetPassword, verifyEmail, sendOtp, verifyOtpAndResetPassword, getAuth } from "../controllers/auth-controllers.js";
-import { googleAuth } from "../controllers/google-auth-controllers.js";
-import ensureAuthenticated from "../middlewares/validate-token-middleware.js";
+import { loginUser, registerUser, resetPassword, verifyEmail, sendOtp, verifyOtpAndResetPassword, getAuth } from "../../controllers/auth-controllers.js";
+import { googleAuth } from "../../controllers/google-auth-controllers.js";
+import ensureAuthenticated from "../../middlewares/validate-token-middleware.js";
 const router = express.Router();
 
 router.get('/:authId', ensureAuthenticated, getAuth);

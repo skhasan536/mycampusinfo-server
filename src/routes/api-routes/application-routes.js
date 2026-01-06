@@ -7,7 +7,7 @@ import {
   getStudApplicationById,
   updateStudApplication,
   deleteStudApplication
-} from '../controllers/application-controllers.js';
+} from '../../controllers/application-controllers.js';
 
 const router = express.Router();
 
