@@ -1,6 +1,5 @@
 import mongoose from 'mongoose';
 
-// This sub-schema defines a single admission timeline entry
 const TimelineEntrySchema = new mongoose.Schema({
     admissionStartDate: {
         type: Date,
