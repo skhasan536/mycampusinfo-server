@@ -1,4 +1,4 @@
-import Student from "../models/user/user_model.js";
+import Student from "../models/user/user-model.js";
 import mongoose from "mongoose";
 // import { toSchoolCardModels } from "../utils/utils.js";
 

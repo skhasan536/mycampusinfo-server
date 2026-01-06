@@ -13,7 +13,7 @@ const AmenitiesSchema = new mongoose.Schema({
   },
   customAmenities: {
     type: [String],
-     required: false
+    required: false
   }
 }, { timestamps: true });
 

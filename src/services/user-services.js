@@ -1,5 +1,5 @@
-import Student from "../models/user-model.js";
-import Auth from "../models/auth-model.js";
+import Student from "../models/user/user-model.js";
+import Auth from "../models/auth/auth-model.js";
 
 // Add a new student
 export const addStudentService = async (data) => {
