@@ -1,19 +1,19 @@
 import express from "express";
 
-import ensureAuthenticated from "../middlewares/validate-token-middleware.js";
+import ensureAuthenticated from "../../middlewares/validate-token-middleware.js";
 import {
     addToShortlist,
     getShortlistedSchools,
     removeShortlist,
     getShortlistCount,
 
-} from "../controllers/shortlist-controllers.js";
+} from "../../controllers/shortlist-controllers.js";
 import {
   generateAndSaveStudentPdf,
    viewStudentPDF,
    listStudentPdfs,
   downloadStudentPdf,
-} from "../controllers/student-pdf-controllers.js";
+} from "../../controllers/student-pdf-controllers.js";
 const router = express.Router();
 
 

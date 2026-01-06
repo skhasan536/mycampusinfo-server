@@ -1,0 +1,4 @@
+export { default as authRoutes } from 'auth-routes.js';
+export { default as userRoutes } from 'user-routes.js';
+export { default as applicationRoutes } from 'application-routes.js';
+export { default as collegeRoutes } from 'college-routes.js';

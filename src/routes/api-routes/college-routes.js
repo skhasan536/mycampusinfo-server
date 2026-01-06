@@ -10,21 +10,21 @@ import {
     updateCollegeByAuthId,
 
     deleteCollegeByAuthId,
-} from "../controllers/college-controller.js";
+} from "../../controllers/college-controller.js";
 
 import {
   addAdmissionTimeline,
   getAdmissionTimelineByCollegeId,
   updateAdmissionTimeline,
   deleteAdmissionTimeline,
-} from "../controllers/admission-timeline-controller.js";
+} from "../../controllers/admission-timeline-controller.js";
 /* ===== Activities ===== */
 import {
     addActivities,
     getActivitiesByCollegeId,
     updateActivities,
     deleteActivities,
-} from "../controllers/activity-controller.js";
+} from "../../controllers/activity-controller.js";
 
 /* ===== Alumni ===== */
 import {
@@ -32,7 +32,7 @@ import {
     getAlumniByCollegeId,
     updateAlumni,
     deleteAlumni,
-} from "../controllers/alumni-controller.js";
+} from "../../controllers/alumni-controller.js";
 
 /* ===== Amenities ===== */
 import {
@@ -40,7 +40,7 @@ import {
     getAmenitiesByCollegeId,
     updateAmenities,
     deleteAmenities,
-} from "../controllers/amenity-controller.js";
+} from "../../controllers/amenity-controller.js";
 
 /* ===== Other Details ===== */
 import {
@@ -48,7 +48,7 @@ import {
     getOtherDetailsByCollegeId,
     updateOtherDetails,
     deleteOtherDetails,
-} from "../controllers/diversity-controller.js";
+} from "../../controllers/diversity-controller.js";
 
 /* ===== Faculty ===== */
 import {
@@ -56,7 +56,7 @@ import {
     getFacultyByCollegeId,
     updateFaculty,
     deleteFaculty,
-} from "../controllers/faculty-controller.js";
+} from "../../controllers/faculty-controller.js";
 
 /* ===== Fees & Scholarships ===== */
 import {
@@ -64,7 +64,7 @@ import {
     getFeesAndScholarshipsByCollegeId,
     updateFeesAndScholarships,
     deleteFeesAndScholarships,
-} from "../controllers/fee-scholarship-controller.js";
+} from "../../controllers/fee-scholarship-controller.js";
 
 /* ===== Hostel ===== */
 import {
@@ -72,7 +72,7 @@ import {
     getHostelsByCollegeId,
     updateHostel,
     deleteHostel,
-} from "../controllers/hostel-controller.js";
+} from "../../controllers/hostel-controller.js";
 
 /* ===== Infrastructure ===== */
 import {
@@ -80,7 +80,7 @@ import {
     getInfrastructureByCollegeId,
     updateInfrastructure,
     deleteInfrastructure,
-} from "../controllers/infrastructure-controller.js";
+} from "../../controllers/infrastructure-controller.js";
 
 /* ===== International Exposure ===== */
 import {
@@ -88,7 +88,7 @@ import {
     getInternationalExposureByCollegeId,
     updateInternationalExposure,
     deleteInternationalExposure,
-} from "../controllers/int-exposure-controller.js";
+} from "../../controllers/int-exposure-controller.js";
 
 /* ===== Reviews ===== */
 import {
@@ -96,7 +96,7 @@ import {
     getReviewsByCollegeId,
     updateReviewStatus,
     deleteReview,
-} from "../controllers/review-controller.js";
+} from "../../controllers/review-controller.js";
 
 /* ===== Safety & Security ===== */
 import {
@@ -104,7 +104,7 @@ import {
     getSafetyAndSecurityByCollegeId,
     updateSafetyAndSecurity,
     deleteSafetyAndSecurity,
-} from "../controllers/security-controller.js";
+} from "../../controllers/security-controller.js";
 
 const router = express.Router();
 
