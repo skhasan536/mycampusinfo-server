@@ -2,7 +2,24 @@ import AdmissionTimeline from "../models/school_details/admission-timeline-model
 
 /* ADD */
 export const createAdmissionTimelineService = async (data) => {
-  return await AdmissionTimeline.create(data);
+  const { collegeId, timelines } = data;
+
+  if (!collegeId || !Array.isArray(timelines) || timelines.length === 0) {
+    throw new Error("collegeId and timelines are required");
+  }
+
+  return await AdmissionTimeline.findOneAndUpdate(
+    { collegeId },
+    {
+      $push: {
+        timelines: { $each: timelines }
+      }
+    },
+    {
+      new: true,
+      upsert: true // 🔥 THIS IS THE KEY
+    }
+  );
 };
 
 /* GET BY COLLEGE ID */
