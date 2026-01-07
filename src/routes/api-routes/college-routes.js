@@ -65,6 +65,7 @@ import {
     updateFeesAndScholarships,
     deleteFeesAndScholarships,
 } from "../../controllers/fee-scholarship-controller.js";
+import { addCourse, getCoursesByCollege, updateCourse } from "../../controllers/course-controller.js";
 
 /* ===== Hostel ===== */
 import {
@@ -89,6 +90,8 @@ import {
     updateInternationalExposure,
     deleteInternationalExposure,
 } from "../../controllers/int-exposure-controller.js";
+
+
 
 /* ===== Reviews ===== */
 import {
@@ -116,6 +119,12 @@ router.get("/:collegeId", getCollegeByAuthId);
 router.put("/:collegeId", updateCollegeByAuthId);
 
 router.delete("/:collegeId", deleteCollegeByAuthId);
+
+//courses
+
+router.post("/courses/add", addCourse);
+router.get("courses/college/:collegeId", getCoursesByCollege);
+router.put("courses/:courseId", updateCourse);
 
 /* ===================== ACTIVITIES ===================== */
 router.post("/activities/add", addActivities);

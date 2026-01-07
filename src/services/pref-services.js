@@ -1,5 +1,5 @@
 // services/pref-service.js
-import Preference from "../models/pref-model.js";
+import Preference from "../models/user/pref-model.js";
 
 // Add preference
 export const addPreferenceService = async (data) => {

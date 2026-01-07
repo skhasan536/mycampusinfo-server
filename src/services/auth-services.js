@@ -1,5 +1,5 @@
 import jwt from 'jsonwebtoken';
-import Auth from '../models/auth/auth_model.js';
+import Auth from '../models/auth/auth-model.js';
 import OTP from '../models/auth/otp-model.js';
 import { sendVerificationEmail, sendOtpToEmail } from '../utils/email.js';
 import mongoose from 'mongoose';
