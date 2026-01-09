@@ -29,7 +29,6 @@ const TimelineEntrySchema = new mongoose.Schema({
         default: []
     },
     eligibility: {
-      
         minQualification: {
             type: String,
             trim: true,

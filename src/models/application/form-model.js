@@ -7,22 +7,47 @@ const FormSchema = new mongoose.Schema({
     ref: 'college',
     required: true,
   },
-  studId: { // keep for backward compatibility (account owner)
+
+  studId: { 
     type: mongoose.Schema.Types.ObjectId,
     ref: 'students',
     required: true,
   },
-  applicationId: { // NEW - reference to StudentApplication document
+
+  timelineId: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'AdmissionTimeline',
+    required: true,
+  },
+
+  applicationId: { 
     type: mongoose.Schema.Types.ObjectId,
     ref: 'StudentApplication',
     default: null,
   },
+
   applicationForm: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'pdfs',
     required: true,
   },
-  
+
+  amount: {
+    type: Number,
+    required: true,
+  },
+
+  status: {
+    type: String,
+    enum: ['Pending', 'Reviewed', 'Accepted', 'Rejected', 'Interview'],
+    default: 'Pending',
+  },
+
+  interviewNote: {
+    type: String,
+    default: null
+  },
+
   payment: {
     type: String,
     enum: ['Paid', 'Unpaid'],
@@ -38,20 +63,6 @@ const FormSchema = new mongoose.Schema({
       enum: ['created', 'authorized', 'captured', 'failed'],
       default: 'created'
     }
-  },
-
-  amount: {
-    type: Number,
-    required: true,
-  },
-  status: {
-    type: String,
-    enum: ['Pending', 'Reviewed', 'Accepted', 'Rejected', 'Interview'],
-    default: 'Pending',
-  },
-  interviewNote: {
-    type: String,
-    default: null
   },
 }, { timestamps: true });
 
