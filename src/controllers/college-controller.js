@@ -1,7 +1,7 @@
 import {
   createCollegeService,
   getAllCollegesService,
-  getCollegeByAuthIdService,
+  getCollegeByIdService,
   updateCollegeByAuthIdService,
   deleteCollegeByAuthIdService,
 } from "../services/college-service.js";
@@ -28,10 +28,20 @@ export const getColleges = async (req, res) => {
 
 
 
-/* GET BY AUTH ID */
-export const getCollegeByAuthId = async (req, res) => {
+// /* GET BY AUTH ID */
+// export const getCollegeByAuthId = async (req, res) => {
+//   try {
+//     const college = await getCollegeByAuthIdService(req.params.authId);
+//     if (!college) return res.status(404).json({ success: false, message: "College not found" });
+//     res.json({ success: true, data: college });
+//   } catch (err) {
+//     res.status(500).json({ success: false, message: err.message });
+//   }
+// };
+
+export const getCollegeById = async (req, res) => {
   try {
-    const college = await getCollegeByAuthIdService(req.params.authId);
+    const college = await getCollegeByIdService(req.params.collegeId);
     if (!college) return res.status(404).json({ success: false, message: "College not found" });
     res.json({ success: true, data: college });
   } catch (err) {
