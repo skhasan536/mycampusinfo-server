@@ -41,7 +41,7 @@ export const getShortlistedSchoolsService = async (authId) => {
    const mapped = toCollegeCardModels(student.shortlistedSchools);
 
 
-  return student.shortlistedSchools;
+  return mapped;
 };
 
 // ✅ Remove School from Shortlist

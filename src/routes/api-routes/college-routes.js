@@ -1,6 +1,14 @@
 import express from "express";
 
+/*=======BLOG=======*/
+import {
+  createBlog,
+  getAllBlogs,
+  getBlogById,
+} from "../../controllers/blog-controllers.js";
+
 /* ===== College Core ===== */
+
 import {
     addCollege,
     getColleges,
@@ -110,6 +118,10 @@ import {
 
 const router = express.Router();
 
+
+router.post("/blogs", createBlog);
+router.get("/blogs", getAllBlogs);
+router.get("/blogs/:id", getBlogById);
 /* ===================== CORE ===================== */
 router.post("/add", addCollege);
 router.get("/", getColleges);
@@ -196,4 +208,7 @@ router.post("/admission/add", addAdmissionTimeline);
 router.get("/admission/:collegeId", getAdmissionTimelineByCollegeId);
 router.put("/admission/:collegeId", updateAdmissionTimeline);
 router.delete("/admission/:collegeId", deleteAdmissionTimeline);
+
+
+
 export default router;

@@ -42,7 +42,7 @@ export const getShortlistedSchools = async (req, res) => {
 // ✅ Remove School from Shortlist
 export const removeShortlist = async (req, res) => {
   try {
-    const { authId, schoolId } = req.body;
+    const { authId, collegeId } = req.body;
 
     const data = await removeShortlistService({ authId, collegeId });
 
