@@ -2,9 +2,9 @@ import mongoose from "mongoose";
 
 const PreferenceSchema = new mongoose.Schema(
     {
-        collegeId: {
+        studentId: {
             type: mongoose.Schema.Types.ObjectId,
-            ref: "college",
+            ref: "authId",
             required: true
         },
         state: {
@@ -15,11 +15,12 @@ const PreferenceSchema = new mongoose.Schema(
             type: String,
             required: true
         },
-       
+
+
         preferredStream: {
             type: String,
             required: true,
-            enum: ['Engineering', 'Medical']
+            enum: ['engineering', 'management', 'arts', 'science', 'law', 'medical', 'design', 'humanities']
         },
         interests: {
             type: String,
