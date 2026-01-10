@@ -1,16 +1,33 @@
 import College from "../models/school_details/college_model.js";
 import { toCollegeCardModels } from "../utils/utils.js";
-
+import mongoose from "mongoose";
 /* ADD COLLEGE */
 export const createCollegeService = async (data) => {
-  return await College.create(data);
+  const {
+    authId, name, city, state, country, ranking, estYear, lat, long, 
+    area, acceptanceRate, collegeInfo, address, pinCode, collegeMode,
+     genderType, shifts, feeRange, stream, email, mobileNo, specialist, tags,
+      website, status, languageMedium, transportAvailable, TeacherToStudentRatio,
+       score, instagramHandle, twitterHandle, linkedinHandle
+
+  } = data;
+
+  const college = new College({
+  _id : new mongoose.Types.ObjectId(authId),authId, name, city, state, country, ranking, estYear, lat, long, area, 
+   acceptanceRate, collegeInfo, address, pinCode, collegeMode, genderType, 
+   shifts, feeRange, stream, email, mobileNo, specialist, tags, website, status,
+    languageMedium, transportAvailable, TeacherToStudentRatio, score, instagramHandle,
+     twitterHandle, linkedinHandle
+  });
+
+  return await college.save();
 };
 
 /* GET ALL COLLEGES */
 export const getAllCollegesService = async () => {
   let colleges =
     await College.find().sort({ createdAt: -1 });
- let mapColleges = await toCollegeCardModels(colleges);
+  let mapColleges = await toCollegeCardModels(colleges);
   return mapColleges;
 };
 
