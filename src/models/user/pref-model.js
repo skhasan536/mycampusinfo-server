@@ -20,7 +20,7 @@ const PreferenceSchema = new mongoose.Schema(
         preferredStream: {
             type: String,
             required: true,
-            enum: ['engineering', 'medical']
+            enum: ['engineering', 'management', 'arts', 'science', 'law', 'medical', 'design', 'humanities']
         },
         interests: {
             type: String,
