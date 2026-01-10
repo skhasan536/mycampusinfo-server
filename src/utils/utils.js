@@ -4,7 +4,7 @@ import Amenities from '../models/school_details/amenities_model.js';
 
 export const toCollegeCardModel = (college, ratings = 0, amenities = []) => {
     return {
-        schoolId: college._id,
+        collegeId: college._id,
         name: college.name,
         feeRange: college.feeRange,
         location: `${college.city}, ${college.state}`,
