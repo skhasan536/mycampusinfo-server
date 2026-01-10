@@ -116,12 +116,19 @@ import {
     deleteSafetyAndSecurity,
 } from "../../controllers/security-controller.js";
 
+/* ===== Search Colleges ===== */
+import {
+   searchColleges
+} from "../../controllers/search-controllers.js";
+
 const router = express.Router();
 
 
 router.post("/blogs", createBlog);
 router.get("/blogs", getAllBlogs);
 router.get("/blogs/:id", getBlogById);
+
+router.get("/search", searchColleges);
 /* ===================== CORE ===================== */
 router.post("/add", addCollege);
 router.get("/", getColleges);
@@ -209,6 +216,6 @@ router.get("/admission/:collegeId", getAdmissionTimelineByCollegeId);
 router.put("/admission/:collegeId", updateAdmissionTimeline);
 router.delete("/admission/:collegeId", deleteAdmissionTimeline);
 
-
+/*===================== FEATURES =============== */
 
 export default router;
