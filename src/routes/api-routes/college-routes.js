@@ -7,6 +7,9 @@ import {
   getBlogById,
 } from "../../controllers/blog-controllers.js";
 
+/*===== COMPARE =====*/
+import { compareSchools } from "../../controllers/compare-controllers.js";
+
 /* ===== College Core ===== */
 
 import {
@@ -116,6 +119,12 @@ import {
     deleteSafetyAndSecurity,
 } from "../../controllers/security-controller.js";
 
+/*===== PLACEMENT =====*/
+import {
+  addPlacement,
+  getPlacementsByCollege,
+  updatePlacement,
+} from "../../controllers/placement-controller.js";
 /* ===== Search Colleges ===== */
 import {
    searchColleges
@@ -141,8 +150,16 @@ router.delete("/:collegeId", deleteCollegeByAuthId);
 //courses
 
 router.post("/courses/add", addCourse);
-router.get("courses/college/:collegeId", getCoursesByCollege);
-router.put("courses/:courseId", updateCourse);
+router.get("/courses/college/:collegeId", getCoursesByCollege);
+router.put("/courses/:courseId", updateCourse);
+
+//compare
+router.post("/compare", compareSchools);
+
+//placement
+router.post("/placements/add", addPlacement);
+router.get("/placements/college/:collegeId", getPlacementsByCollege);
+router.put("/placements/:placementId", updatePlacement);
 
 /* ===================== ACTIVITIES ===================== */
 router.post("/activities/add", addActivities);
