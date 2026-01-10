@@ -8,6 +8,7 @@ export const addCoursesService = async (collegeId, courses) => {
     }
 
     const college = await College.findById(collegeId);
+    
     if (!college) throw { status: 404, message: "College not found" };
 
     const savedCourses = [];
