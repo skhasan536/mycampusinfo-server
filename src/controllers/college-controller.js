@@ -39,6 +39,8 @@ export const getCollegeByAuthId = async (req, res) => {
   }
 };
 
+
+
 /* UPDATE BY AUTH ID */
 export const updateCollegeByAuthId = async (req, res) => {
   try {
