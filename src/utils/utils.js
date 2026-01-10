@@ -1,34 +1,34 @@
-// import Review from '../models/reviews-model.js';
-// import Amenities from '../models/amenities-model.js';
+import Review from '../models/school_details/review_model.js';
+import Amenities from '../models/school_details/amenities_model.js';
 // import { getSchoolScoreById } from '../controllers/school-controllers.js';
 
-// export const toSchoolCardModel = (school, ratings = 0, amenities = [], schoolScore) => {
-//     return {
-//         schoolId: school._id,
-//         name: school.name,
-//         feeRange: school.feeRange,
-//         location: `${school.city}, ${school.state}`,
-//         board: school.board,
-//         genderType: school.genderType,
-//         shifts: school.shifts,
-//         schoolMode: school.schoolMode,
-//         latitude: school.latitude,
-//         longitude: school.longitude,
-//         score: schoolScore || 0,
-//         coverImage: school.logo ?? (school.photos?.length > 0 ? school.photos[0] : null),
-//         amenities,
-//         ratings,
-//     };
-// };
+export const toCollegeCardModel = (college, ratings = 0, amenities = []) => {
+    return {
+        schoolId: college._id,
+        name: college.name,
+        feeRange: college.feeRange,
+        location: `${college.city}, ${college.state}`,
+        board: college.board,
+        genderType: college.genderType,
+        shifts: college.shifts,
+        collegeMode: college.collegeMode,
+        latitude: college.latitude,
+        longitude: college.longitude,
+        // score: schoolScore || 0,
+        coverImage: college.logo ?? (college.photos?.length > 0 ? college.photos[0] : null),
+        amenities,
+        ratings,
+    };
+};
 
-// export const toSchoolCardModels = async (schools = []) => {
-//     let mapped = Promise.all(
-//         schools.map(async (school) => {
-//             const score = await getSchoolScoreById(school._id);
-//             const review = await Review.findOne({ schoolId: school._id });
-//             const amenities = await Amenities.findOne({ schoolId: school._id });
-//             return toSchoolCardModel(school, review?.ratings || 0, amenities?.predefinedAmenities || amenities?.customAmenities || [], score);
-//         })
-//     );
-//     return mapped;
-// };
+export const toCollegeCardModels = async (colleges = []) => {
+    let mapped = Promise.all(
+        colleges.map(async (college) => {
+            // const score = await getSchoolScoreById(college._id);
+            const review = await Review.findOne({ collegeId: college._id });
+            const amenities = await Amenities.findOne({ collegeId: college._id });
+            return toCollegeCardModel(college, review?.ratings || 0, amenities?.predefinedAmenities || amenities?.customAmenities || []);
+        })
+    );
+    return mapped;
+};
