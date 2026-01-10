@@ -1,6 +1,6 @@
 import Student from "../models/user/user-model.js";
 import mongoose from "mongoose";
-// import { toSchoolCardModels } from "../utils/utils.js";
+import { toCollegeCardModels } from "../utils/utils.js";
 
 // ✅ Add School to Shortlist
 export const addToShortlistService = async ({ authId, collegeId }) => {
@@ -16,6 +16,7 @@ export const addToShortlistService = async ({ authId, collegeId }) => {
   const school = await College.findById(collegeId);
   if (!school) {
      throw {status:400, message:"School not found"};
+     
   }
 
   if (student.shortlistedSchools.includes(collegeId)) {
@@ -35,7 +36,7 @@ export const getShortlistedSchoolsService = async (authId) => {
     throw {status:400, message:"Student not found"};
   }
 
-  // const mapped = toSchoolCardModels(student.shortlistedSchools);
+   const mapped = toCollegeCardModels(student.shortlistedSchools);
 
 
   return student.shortlistedSchools;

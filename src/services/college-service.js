@@ -1,4 +1,5 @@
 import College from "../models/school_details/college_model.js";
+import { toCollegeCardModels } from "../utils/utils.js";
 
 /* ADD COLLEGE */
 export const createCollegeService = async (data) => {
@@ -7,7 +8,10 @@ export const createCollegeService = async (data) => {
 
 /* GET ALL COLLEGES */
 export const getAllCollegesService = async () => {
-  return await College.find().sort({ createdAt: -1 });
+  let colleges =
+    await College.find().sort({ createdAt: -1 });
+ let mapColleges = await toCollegeCardModels(colleges);
+  return mapColleges;
 };
 
 
