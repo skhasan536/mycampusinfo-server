@@ -1,5 +1,7 @@
 import Student from "../models/user/user-model.js";
 import mongoose from "mongoose";
+import College from "../models/school_details/college_model.js";
+
 import { toCollegeCardModels } from "../utils/utils.js";
 
 // ✅ Add School to Shortlist

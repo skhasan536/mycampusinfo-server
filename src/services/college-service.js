@@ -33,8 +33,8 @@ export const getAllCollegesService = async () => {
 
 
 /* GET COLLEGE BY AUTH ID */
-export const getCollegeByAuthIdService = async (authId) => {
-  return await College.findOne({ authId });
+export const getCollegeByIdService = async (collegeId) => {
+  return await College.findById(collegeId );
 };
 
 

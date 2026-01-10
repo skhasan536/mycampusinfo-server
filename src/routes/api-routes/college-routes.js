@@ -5,8 +5,7 @@ import {
     addCollege,
     getColleges,
 
-    getCollegeByAuthId,
-
+  getCollegeById,
     updateCollegeByAuthId,
 
     deleteCollegeByAuthId,
@@ -114,7 +113,7 @@ const router = express.Router();
 /* ===================== CORE ===================== */
 router.post("/add", addCollege);
 router.get("/", getColleges);
-router.get("/:collegeId", getCollegeByAuthId);
+router.get("/:collegeId", getCollegeById);
 
 router.put("/:collegeId", updateCollegeByAuthId);
 
