@@ -21,6 +21,17 @@ export const getFormsByStudentService = async (studId, status) => {
     .populate({ path: 'studId', select: 'name' })
     .sort({ createdAt: -1 });
 
+  for (const form of forms) {
+    const admissionTimeline = await AdmissionTimeline.findOne({ collegeId: form.collegeId, 'timelines._id': form.timelineId });
+    const timelines = admissionTimeline.timelines;
+    const timeline = timelines.find(t => t._id.toString() === form.timelineId.toString());
+    const populatedForm = await form.populate({
+      path: 'timelineId',
+      select: 'admissionStartDate admissionEndDate status applicationFee courseId documentsRequired eligibility'
+    });
+    form.timelineId = timeline;
+  }
+
   return forms;
 };
 
@@ -34,6 +45,17 @@ export const getFormsByTimelineService = async (timelineId, status) => {
     .populate({ path: 'collegeId', select: 'name collegeMode genderType shifts state city' })
     .populate({ path: 'studId', select: 'name' })
     .sort({ createdAt: -1 });
+
+  for (const form of forms) {
+    const admissionTimeline = await AdmissionTimeline.findOne({ collegeId: form.collegeId, 'timelines._id': form.timelineId });
+    const timelines = admissionTimeline.timelines;
+    const timeline = timelines.find(t => t._id.toString() === form.timelineId.toString());
+    const populatedForm = await form.populate({
+      path: 'timelineId',
+      select: 'admissionStartDate admissionEndDate status applicationFee courseId documentsRequired eligibility'
+    });
+    form.timelineId = timeline;
+  }
 
   return forms;
 };
@@ -50,6 +72,17 @@ export const getFormsBySchoolService = async (collegeId, status) => {
     .populate({ path: 'applicationId', select: 'name studId' })
     .populate({ path: 'studId', select: 'name email' })
     .sort({ createdAt: -1 });
+
+  for (const form of forms) {
+    const admissionTimeline = await AdmissionTimeline.findOne({ collegeId: form.collegeId, 'timelines._id': form.timelineId });
+    const timelines = admissionTimeline.timelines;
+    const timeline = timelines.find(t => t._id.toString() === form.timelineId.toString());
+    const populatedForm = await form.populate({
+      path: 'timelineId',
+      select: 'admissionStartDate admissionEndDate status applicationFee courseId documentsRequired eligibility'
+    });
+    form.timelineId = timeline;
+  }
 
   return forms;
 };
@@ -72,6 +105,16 @@ export const getFormDetailsService = async (formId) => {
     .populate({ path: 'applicationId' });
 
   if (!form) throw { status: 404, message: "Form not found" };
+
+  const admissionTimeline = await AdmissionTimeline.findOne({ collegeId: form.collegeId, 'timelines._id': form.timelineId });
+  const timelines = admissionTimeline.timelines;
+  const timeline = timelines.find(t => t._id.toString() === form.timelineId.toString());
+  const populatedForm = await form.populate({
+    path: 'timelineId',
+    select: 'admissionStartDate admissionEndDate status applicationFee courseId documentsRequired eligibility'
+  });
+  form.timelineId = timeline;
+
   return form;
 };
 
@@ -94,7 +137,6 @@ export const submitFormService = async (formId, collegeId, studId, timelineId, a
   const college = await College.findById(collegeId);
   if (!college) throw { status: 404, message: "College not found" };
 
-  console.log(timelineId);
   const timeline = await AdmissionTimeline.findOne({ collegeId, 'timelines._id': timelineId });
   if (!timeline) throw { status: 404, message: "Timeline not found" };
 
@@ -110,7 +152,7 @@ export const submitFormService = async (formId, collegeId, studId, timelineId, a
   // Check existing submission (prefer applicationId)
   let existingForm;
   if (applicationId) {
-    existingForm = await Form.findOne({ applicationForm: formId, collegeId, applicationId, timelineId});
+    existingForm = await Form.findOne({ applicationForm: formId, collegeId, applicationId, timelineId });
   } else {
     existingForm = await Form.findOne({ applicationForm: formId, collegeId, studId, timelineId });
   }
