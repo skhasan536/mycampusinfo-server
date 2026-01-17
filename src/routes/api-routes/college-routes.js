@@ -147,12 +147,12 @@ import {
    searchColleges
 } from "../../controllers/search-controllers.js";
 /*===== PLACEMENT =====*/
-import {
-  addPlacement,
-  getPlacementsByCollege,
-  updatePlacement,
-} from "../../controllers/placement-controller.js";
-/* ===== Search Colleges ===== */
+// import {
+//   addPlacement,
+//   getPlacementsByCollege,
+//   updatePlacement,
+// } from "../../controllers/placement-controller.js";
+// /* ===== Search Colleges ===== */
 
 
 const router = express.Router();

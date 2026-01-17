@@ -32,7 +32,7 @@ router.get("/timeline/:timelineId", getFormsByTimeline);
 /**
  * Get all forms received by a school
  */
-router.get("/school/:collegeId", getFormsBySchool);
+router.get("/college/:collegeId", getFormsBySchool);
 
 router.get("/application/:applicationId", getFormsByApplication);
 /**
