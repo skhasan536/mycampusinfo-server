@@ -14,12 +14,10 @@ const CollegeSchema = new mongoose.Schema({
     estYear: { type: String, required: true },
     lat: { type: Number, required: true },
     long: { type: Number, required: true },
-
     area: {
         type: String,
         required: false
     },
-
     acceptanceRate: { type: String, required: true },
     collegeInfo: { type: String, required: true },
     address: { type: String, required: false },
@@ -41,11 +39,10 @@ const CollegeSchema = new mongoose.Schema({
             "More than 5 Lakh"
         ]
     },
-
     stream: {
         type: String,
         required: true,
-        enum: ['Engineering', 'Management', 'Arts', 'Science', 'Law', 'Medical', 'Design', 'Humanities'] // ✅ Added "Management"
+        enum: ['engineering', 'management', 'arts', 'science', 'law', 'medical', 'design', 'humanities'] // ✅ Added "Management"
     },
     email: { type: String, required: true },
     mobileNo: { type: String, required: true },
