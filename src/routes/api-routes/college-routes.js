@@ -2,9 +2,10 @@ import express from "express";
 
 /*=======BLOG=======*/
 import {
-  createBlog,
-  getAllBlogs,
-  getBlogById,
+    createBlog,
+
+    getAllBlogs,
+    getBlogById,
 } from "../../controllers/blog-controllers.js";
 
 /*===== COMPARE =====*/
@@ -16,17 +17,17 @@ import {
     addCollege,
     getColleges,
 
-  getCollegeById,
+    getCollegeById,
     updateCollegeByAuthId,
 
     deleteCollegeByAuthId,
 } from "../../controllers/college-controller.js";
 
 import {
-  addAdmissionTimeline,
-  getAdmissionTimelineByCollegeId,
-  updateAdmissionTimeline,
-  deleteAdmissionTimeline,
+    addAdmissionTimeline,
+    getAdmissionTimelineByCollegeId,
+    updateAdmissionTimeline,
+    deleteAdmissionTimeline,
 } from "../../controllers/admission-timeline-controller.js";
 /* ===== Activities ===== */
 import {
@@ -67,15 +68,37 @@ import {
     updateFaculty,
     deleteFaculty,
 } from "../../controllers/faculty-controller.js";
-
-/* ===== Fees & Scholarships ===== */
 import {
-    addFeesAndScholarships,
-    getFeesAndScholarshipsByCollegeId,
-    updateFeesAndScholarships,
-    deleteFeesAndScholarships,
+  addCourseExams,
+getCollegeExams
+} from "../../controllers/exam-controller.js";
+
+/* ===================== COURSE FEES ===================== */
+import {
+  upsertCourseFee,
+getCourseFeesByCollegeId
+} from "../../controllers/fee-controller.js";
+
+/* ===================== COURSE PLACEMENTS ===================== */
+import {
+  addCoursePlacement,
+  getCoursePlacements,
+  updateCoursePlacement,
+  getPlacementsByCollege
+} from "../../controllers/placement-controller.js";
+
+/* ===================== SCHOLARSHIPS ===================== */
+import {
+  addScholarship,
+  getScholarshipsByCollege,
 } from "../../controllers/fee-scholarship-controller.js";
-import { addCourse, getCoursesByCollege, updateCourse } from "../../controllers/course-controller.js";
+
+
+import {
+    addCourse,
+    getCoursesByCollege,
+    updateCourse,
+} from "../../controllers/course-controller.js";
 
 /* ===== Hostel ===== */
 import {
@@ -119,6 +142,10 @@ import {
     deleteSafetyAndSecurity,
 } from "../../controllers/security-controller.js";
 
+
+  import {
+   searchColleges
+} from "../../controllers/search-controllers.js";
 /*===== PLACEMENT =====*/
 import {
   addPlacement,
@@ -126,9 +153,7 @@ import {
   updatePlacement,
 } from "../../controllers/placement-controller.js";
 /* ===== Search Colleges ===== */
-import {
-   searchColleges
-} from "../../controllers/search-controllers.js";
+
 
 const router = express.Router();
 
@@ -148,18 +173,42 @@ router.put("/:collegeId", updateCollegeByAuthId);
 router.delete("/:collegeId", deleteCollegeByAuthId);
 
 //courses
-
-router.post("/courses/add", addCourse);
+/* ===================== COURSES ===================== */
+router.post("/course/add", addCourse);
 router.get("/courses/college/:collegeId", getCoursesByCollege);
-router.put("/courses/:courseId", updateCourse);
+router.put("/course/:courseId", updateCourse);
+
+/* ===================== EXAMS (COURSE BASED) ===================== */
+router.post("/exam", addCourseExams);       // add exams (course based)
+router.get("/exam/:id", getCollegeExams); 
+
+/* ===================== FEES (COURSE BASED) ===================== */
+router.post("/course-fee", upsertCourseFee);
+
+//  college-based fetch
+router.get("/course-fee/college/:collegeId", getCourseFeesByCollegeId);
+/* ===================== PLACEMENT (COURSE BASED) ===================== */
+// add
+router.post("/placement/add", addCoursePlacement);
+
+// by course
+router.get("/placement/:courseId", getCoursePlacements);
+
+// by college (NEW)
+router.get("/placement/college/:collegeId", getPlacementsByCollege);
+
+// update
+router.put("/placement/:placementId", updateCoursePlacement);
+
+
+/* ===================== SCHOLARSHIPS (COLLEGE BASED) ===================== */
+router.post("/scholarship/add", addScholarship);
+router.get("/scholarship/:collegeId", getScholarshipsByCollege);
+
 
 //compare
 router.post("/compare", compareSchools);
 
-//placement
-router.post("/placements/add", addPlacement);
-router.get("/placements/college/:collegeId", getPlacementsByCollege);
-router.put("/placements/:placementId", updatePlacement);
 
 /* ===================== ACTIVITIES ===================== */
 router.post("/activities/add", addActivities);
@@ -191,11 +240,6 @@ router.get("/faculty/:collegeId", getFacultyByCollegeId);
 router.put("/faculty/:collegeId", updateFaculty);
 router.delete("/faculty/:collegeId", deleteFaculty);
 
-/* ===================== FEES & SCHOLARSHIPS ===================== */
-router.post("/fees/add", addFeesAndScholarships);
-router.get("/fees/:collegeId", getFeesAndScholarshipsByCollegeId);
-router.put("/fees/:collegeId", updateFeesAndScholarships);
-router.delete("/fees/:collegeId", deleteFeesAndScholarships);
 
 /* ===================== HOSTEL ===================== */
 router.post("/hostel/add", addHostel);

@@ -1,58 +1,48 @@
-import Placement from "../models/school_details/placement_model.js";
-import College from "../models/school_details/college_model.js";
-import mongoose from "mongoose";
+import CoursePlacement from "../models/school_details/placement_model.js";
+import Course from "../models/school_details/course-model.js";
 
-export const addPlacementsService = async (collegeId, placements) => {
-  if (!Array.isArray(placements) || placements.length === 0) {
-    throw { status: 400, message: "Placements must be a non-empty array." };
-  }
-
-  const college = await College.findById(collegeId);
-  if (!college) throw { status: 404, message: "College not found" };
-
-  const saved = [];
-
-  for (const p of placements) {
-    const { year, totalStudents, placedStudents, highestPackage, averagePackage, topRecruiters } = p;
-
-    if (!year || !totalStudents || !placedStudents || !highestPackage || !averagePackage) {
-      throw { status: 400, message: "Missing required fields in placement entry." };
-    }
-
-    const newPlacement = new Placement({
-      collegeId,
-      year,
-      totalStudents,
-      placedStudents,
-      highestPackage,
-      averagePackage,
-      topRecruiters,
-    });
-
-    const savedPlacement = await newPlacement.save();
-    saved.push(savedPlacement);
-  }
-
-  return saved;
+/* ================= ADD ================= */
+export const addCoursePlacementService = async (data) => {
+  return await CoursePlacement.create(data);
 };
 
+/* ================= GET BY COURSE ================= */
+export const getCoursePlacementsService = async (courseId) => {
+  return await CoursePlacement.find({ courseId }).sort({ year: -1 });
+};
+
+/* ================= GET BY COLLEGE (NEW & IMPORTANT) ================= */
 export const getPlacementsByCollegeService = async (collegeId) => {
-  if (!mongoose.Types.ObjectId.isValid(collegeId)) {
-    throw { status: 400, message: "Invalid College ID" };
-  }
+  // 1️⃣ Get courses of the college
+  const courses = await Course.find({ collegeId }).select("_id courseName");
 
-  const college = await College.findById(collegeId);
-  if (!college) throw { status: 404, message: "College not found" };
+  if (!courses.length) return [];
 
-  const placements = await Placement.find({ collegeId }).sort({ year: -1 });
-  if (placements.length === 0) throw { status: 404, message: "No placement data found." };
+  const courseIds = courses.map((c) => c._id);
 
-  return placements;
+  // 2️⃣ Get placements for those courses
+  const placements = await CoursePlacement.find({
+    courseId: { $in: courseIds },
+  }).sort({ year: -1 });
+
+  // 3️⃣ Group by course
+  return courses.map((course) => ({
+    courseId: course._id,
+    courseName: course.courseName,
+    placements: placements.filter(
+      (p) => p.courseId.toString() === course._id.toString()
+    ),
+  }));
 };
 
-export const updatePlacementService = async (placementId, data) => {
-  const updated = await Placement.findByIdAndUpdate(placementId, data, { new: true });
-  if (!updated) throw { status: 404, message: "Placement record not found" };
+/* ================= UPDATE ================= */
+export const updateCoursePlacementService = async (placementId, data) => {
+  const updated = await CoursePlacement.findByIdAndUpdate(
+    placementId,
+    data,
+    { new: true }
+  );
 
+  if (!updated) throw { status: 404, message: "Placement not found" };
   return updated;
 };
