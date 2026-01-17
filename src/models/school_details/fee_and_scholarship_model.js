@@ -1,47 +1,47 @@
-import mongoose, { Types } from 'mongoose';
+// models/scholarship_model.js
+import mongoose from "mongoose";
 
-// Sub-schema for an individual class fee structure
-const ClassFeeSchema = new mongoose.Schema({
-    courseName: { type: String, required: true },
-    courseDuration: { type: String, required: true },
-    tuition: { type: Number, required: true, min: 0 },
-    activity: { type: Number, default: 0, min: 0 },
-    transport: { type: Number, default: 0, min: 0 },
-    hostel: { type: Number, default: 0, min: 0 },
-    misc: { type: Number, default: 0, min: 0 }
-});
+const ScholarshipSchema = new mongoose.Schema(
+  {
+    collegeId: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "college",
+      required: true,
+    },
 
-// Sub-schema for an individual scholarship
-const ScholarshipSchema = new mongoose.Schema({
     name: { type: String, required: true },
     amount: { type: Number, required: true, min: 0 },
+
     type: {
-        type: String,
-        required: true,
-        enum: ['Merit', 'Socio-economic', 'Cultural', 'Sports', 'Community', 'Academic Excellence', 'Other']
+      type: String,
+      enum: [
+        "Merit",
+        "Socio-economic",
+        "Cultural",
+        "Sports",
+        "Community",
+        "Academic Excellence",
+        "Other",
+      ],
+      required: true,
     },
+
     documentsRequired: {
-        type: [String],
-        enum: ['Income Certificate', 'Caste Certificate', 'Aadhar Card', 'Previous Marksheet', 'Bonafide Certificate', 'Sports Achievement Certificate', 'Domicile Certificate', 'Other']
-    }
-});
-
-// Main schema for the entire page
-const FeesAndScholarshipsSchema = new mongoose.Schema({
-    collegeId: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "college",
-        required: true,
-        unique: true
+      type: [String],
+      enum: [
+        "Income Certificate",
+        "Caste Certificate",
+        "Aadhar Card",
+        "Previous Marksheet",
+        "Bonafide Certificate",
+        "Sports Achievement Certificate",
+        "Domicile Certificate",
+        "Other",
+      ],
     },
-    feesTransparency: {
-        type: Number,
-        min: [0, 'cannot be negative']
-    },
-    classFees: [ClassFeeSchema],
-    scholarships: [ScholarshipSchema]
-}, { timestamps: true });
+  },
+  { timestamps: true }
+);
 
-const FeesAndScholarships = mongoose.model('feesAndScholarships', FeesAndScholarshipsSchema);
-
-export default FeesAndScholarships;
+export default mongoose.models.Scholarship ||
+  mongoose.model("Scholarship", ScholarshipSchema);
