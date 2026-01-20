@@ -3,13 +3,14 @@ import express from "express";
 /*=======BLOG=======*/
 import {
     createBlog,
-
     getAllBlogs,
     getBlogById,
 } from "../../controllers/blog-controllers.js";
 
 /*===== COMPARE =====*/
 import { compareSchools } from "../../controllers/compare-controllers.js";
+
+import { predictColleges } from "../../controllers/predictor-controllers.js";
 
 /* ===== College Core ===== */
 
@@ -163,6 +164,8 @@ router.get("/blogs", getAllBlogs);
 router.get("/blogs/:id", getBlogById);
 
 router.get("/search", searchColleges);
+router.post('/predict-colleges', predictColleges);
+
 /* ===================== CORE ===================== */
 router.post("/add", addCollege);
 router.get("/", getColleges);
