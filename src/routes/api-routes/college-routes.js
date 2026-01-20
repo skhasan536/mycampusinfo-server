@@ -1,5 +1,12 @@
 import express from "express";
 
+/* ===== Hostel ===== */
+import {
+    getHostelsByCollegeId,
+    addHostel,
+    updateHostel,
+    deleteHostel,
+} from "../../controllers/hostel-controller.js";
 /*=======BLOG=======*/
 import {
     createBlog,
@@ -69,28 +76,28 @@ import {
     deleteFaculty,
 } from "../../controllers/faculty-controller.js";
 import {
-  addCourseExams,
-getCollegeExams
+    addCourseExams,
+    getCollegeExams
 } from "../../controllers/exam-controller.js";
 
 /* ===================== COURSE FEES ===================== */
 import {
-  upsertCourseFee,
-getCourseFeesByCollegeId
+    upsertCourseFee,
+    getCourseFeesByCollegeId
 } from "../../controllers/fee-controller.js";
 
 /* ===================== COURSE PLACEMENTS ===================== */
 import {
-  addCoursePlacement,
-  getCoursePlacements,
-  updateCoursePlacement,
-  getPlacementsByCollege
+    addCoursePlacement,
+    getCoursePlacements,
+    updateCoursePlacement,
+    getPlacementsByCollege
 } from "../../controllers/placement-controller.js";
 
 /* ===================== SCHOLARSHIPS ===================== */
 import {
-  addScholarship,
-  getScholarshipsByCollege,
+    addScholarship,
+    getScholarshipsByCollege,
 } from "../../controllers/fee-scholarship-controller.js";
 
 
@@ -100,13 +107,7 @@ import {
     updateCourse,
 } from "../../controllers/course-controller.js";
 
-/* ===== Hostel ===== */
-import {
-    addHostel,
-    getHostelsByCollegeId,
-    updateHostel,
-    deleteHostel,
-} from "../../controllers/hostel-controller.js";
+
 
 /* ===== Infrastructure ===== */
 import {
@@ -143,8 +144,8 @@ import {
 } from "../../controllers/security-controller.js";
 
 
-  import {
-   searchColleges
+import {
+    searchColleges
 } from "../../controllers/search-controllers.js";
 /*===== PLACEMENT =====*/
 // import {
@@ -178,9 +179,25 @@ router.post("/course/add", addCourse);
 router.get("/courses/college/:collegeId", getCoursesByCollege);
 router.put("/course/:courseId", updateCourse);
 
+//===================hostels=====================
+
+router.get(
+    "/hostel/:collegeId",
+    getHostelsByCollegeId
+);
+
+// Add hostel
+router.post("/hostel/add", addHostel);
+
+// Update hostel
+router.put("/hostel/:id", updateHostel);
+
+// Delete hostel (soft)
+router.delete("/hostel/:id", deleteHostel);
+
 /* ===================== EXAMS (COURSE BASED) ===================== */
 router.post("/exam", addCourseExams);       // add exams (course based)
-router.get("/exam/:id", getCollegeExams); 
+router.get("/exam/:id", getCollegeExams);
 
 /* ===================== FEES (COURSE BASED) ===================== */
 router.post("/course-fee", upsertCourseFee);
