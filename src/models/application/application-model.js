@@ -14,23 +14,23 @@ const StudentApplicationSchema = new mongoose.Schema({
   nationality: { type: String, required: true },
 category :{type:String,required :true},
   // Parent Details
-  fatherName: { type: String, required: true },
-  fatherAge: { type: Number, required: true },
-  fatherQualification: { type: String, required: true },
-  fatherProfession: { type: String, required: true },
-  fatherAnnualIncome: { type: String, required: true },
-  fatherPhoneNo: { type: String, required: true },
-  fatherEmail: { type: String, required: true },
+  fatherName: { type: String, required: false },
+  fatherAge: { type: Number, required: false },
+  fatherQualification: { type: String, required: false },
+  fatherProfession: { type: String, required: false },
+  fatherAnnualIncome: { type: String, required: false },
+  fatherPhoneNo: { type: String, required:  false },
+  fatherEmail: { type: String, required: false },
 
-  motherName: { type: String, required: true },
-  motherAge: { type: Number, required: true },
-  motherQualification: { type: String, required: true },
-  motherProfession: { type: String, required: true },
-  motherAnnualIncome: { type: String, required: true },
-  motherPhoneNo: { type: String, required: true },
-  motherEmail: { type: String, required: true },
+  motherName: { type: String, required: false },
+  motherAge: { type: Number, required: false },
+  motherQualification: { type: String, required: false },
+  motherProfession: { type: String, required: false },
+  motherAnnualIncome: { type: String, required: false },
+  motherPhoneNo: { type: String, required: false },
+  motherEmail: { type: String, required: false },
 
-  yearlyBudget: { type: String, required: true },
+  yearlyBudget: { type: String, required: false },
 
   // 🎓 Course Preferences (STRING only)
   coursePreferences: [
