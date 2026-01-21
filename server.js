@@ -13,7 +13,27 @@ const app = express();
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(cors());
+app.use(cors({
+  origin: (origin, callback) => {
+    // allow requests with no origin (Postman, mobile apps, curl)
+    if (!origin) return callback(null, true);
+
+    if (
+      origin === "http://localhost:5173" ||
+      origin === "http://127.0.0.1:5173"
+    ) {
+      return callback(null, true);
+    }
+
+    // allow all other origins
+    return callback(null, true);
+  },
+  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+  allowedHeaders: ["Content-Type", "Authorization"],
+  credentials: true
+}));
+
+
 
 app.get('/', (req, res) => {
     res.send(getEntryPage());
